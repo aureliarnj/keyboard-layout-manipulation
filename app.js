@@ -78,7 +78,7 @@ app.post('/result', (req, res) => {
             let flipKey = index === "H" || index === "V" ? index : console.log(`${input[i]} is a wrong key, please enter the correct key`);
             result = flipKey === "H" ? horizontalFlipKey(table) : verticalFlipKey(table);
         }
-        console.log(result);
+        // console.log(result);
         // let index = !isNaN(input[i])
 
         // if (input[i].toUpperCase() === "H") {
@@ -96,7 +96,7 @@ app.post('/result', (req, res) => {
 
     }
 
-    res.send('see console');
+    res.render('index', { table });
 });
 
 // Connection
