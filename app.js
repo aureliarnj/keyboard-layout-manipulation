@@ -23,20 +23,11 @@ const table = [
 ];
 
 const shiftKey = (val, num) => {
-    let index;
-    const shifting = (val, num) => {
-        const len = val.length;
-        for (let i = 0; i < len; i++) {
-            return val.map((x,i,a) => val[(((num+i)%len) + len) % len]);
-        }
-    };
-    
-    for (let i = 0; i < val.length; i++) {
-        index = shifting(val[i], num);
+    const len = val.length;
+    for (let i = 0; i < len; i++) {
+        return val.map((x,i,a) => val[(((num+i)%len) + len) % len]);
     }
-    return index
 };
-
 
 const verticalFlipKey = (val) => {
     let index = 0;
@@ -61,8 +52,6 @@ const horizontalFlipKey = (val) => {
     return val;
 };
 
-// console.log(shiftKey(table, -8));
-
 app.get('/', (req, res) => {
     res.render('index', { table });
 });
@@ -73,26 +62,10 @@ app.post('/result', (req, res) => {
     for (let i = 0; i < input.length; i++) {
         let index = input[i].toUpperCase();
         let result;
-        // isNaN(input[i]) ? console.log("yep") : console.log("this is number");
         if (isNaN(input[i])) {
             let flipKey = index === "H" || index === "V" ? index : console.log(`${input[i]} is a wrong key, please enter the correct key`);
             result = flipKey === "H" ? horizontalFlipKey(table) : verticalFlipKey(table);
         }
-        // console.log(result);
-        // let index = !isNaN(input[i])
-
-        // if (input[i].toUpperCase() === "H") {
-        //     console.log('1 ok');
-        // }
-
-        // if (input[i].toUpperCase() === "V") {
-        //     console.log('2 ok');
-        // }
-
-        // if (!isNaN(input[i])) {
-        //     console.log("3 ok");
-        //     shiftKey(table[1], input[i])
-        // }
 
     }
 
